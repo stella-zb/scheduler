@@ -4,6 +4,7 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
 
 export default function Appointment(props) {
   return (
@@ -22,6 +23,7 @@ export default function Appointment(props) {
           onConfirm={props.onConfirm}
           onCancel={props.onCancel}
         />
+        <Status message={props.message} />
       </article>
     </>
   );
