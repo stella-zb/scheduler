@@ -1,7 +1,7 @@
 import React from "react";
 import "components/DayListItem.scss";
 import classNames from 'classnames/bind';
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 
 export default function DayListItem(props) {
   const dayClass = classNames("day-list__item", {
