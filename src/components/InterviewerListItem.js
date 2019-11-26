@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 export default function InterviewerListItem(props) {
   const interviewerClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected
-  })
+  });
 
   return (
     <li 
@@ -19,6 +19,5 @@ export default function InterviewerListItem(props) {
       />
       {props.name}
     </li>
-  )
-
+  );
 }
