@@ -11,21 +11,20 @@ import Form from "components/Appointment/Form";
 
 export default function Appointment(props) {
   const showOrEmpty = (
-    props.interview?
-    <Show 
+    props.interview? 
+    <Show
       student={props.interview.student}
       interviewer={props.interview.interviewer.name}
       onEdit={props.onEdit}
       onDelete={props.onDelete}
     /> : 
     <Empty onAdd={props.onAdd}/>
-  )
-
+  );
 
   return (
     <Fragment>
       <Header time={props.time} />
-      <article className="appointment :last-of-type">
+      <article className="appointment">
         {showOrEmpty}
         {/* <Confirm 
           message={props.message}
@@ -37,4 +36,4 @@ export default function Appointment(props) {
       </article>
     </Fragment>
   );
-}
+};
