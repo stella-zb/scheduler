@@ -30,9 +30,8 @@ export default function Form(props) {
             placeholder="Enter Student Name"
           />
         </form>
-        <InterviewerList 
-          interviewers={[]} 
-          // interviewers={props.interviewers}
+        <InterviewerList
+          interviewers={props.interviewers}
           interviewer={interviewer} 
           setInterviewer={setInterviewer}
         />
