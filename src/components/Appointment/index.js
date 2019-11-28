@@ -39,6 +39,7 @@ export default function Appointment(props) {
         )}
         {mode === CREATE && 
           <Form 
+            interviewer={ [] }
             onCancel={ () => transition(EMPTY) }
           />
         }
