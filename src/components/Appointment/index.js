@@ -58,7 +58,7 @@ export default function Appointment(props) {
           />
         }
         {mode === SAVING && 
-          <Status message={props.message} />
+          <Status message="Saving" />
         }
         {/* <Confirm 
           message={props.message}
