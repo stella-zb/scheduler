@@ -8,14 +8,15 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Form from "components/Appointment/Form";
-import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
+import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -27,19 +28,9 @@ export default function Appointment(props) {
       interviewer
     };
     
+    transition(SAVING)
     props.bookInterview(props.id, interview) 
-    transition(SHOW)
-
-    axios.put(`http://localhost:8001/api/appointments/${props.id}`, { interview })
-      .then((res) => {
-        setState(prev => ({...prev,
-          interview: res
-        }));
-        transition(SHOW)
-      })
-      .catch((err) => {
-        console.log(err);
-      }) 
+    .then(() => transition(SHOW))
   }
 
   return (
@@ -66,13 +57,16 @@ export default function Appointment(props) {
             onSave={ save }
           />
         }
+        {mode === SAVING && 
+          <Status message={props.message} />
+        }
         {/* <Confirm 
           message={props.message}
           onConfirm={props.onConfirm}
           onCancel={props.onCancel}
-        />
-        <Status message={props.message} />
-        <Error message={props.message} onClose={props.onClose} /> */}
+        /> */}
+        
+        {/* <Error message={props.message} onClose={props.onClose} /> */}
       </article>
     </Fragment>
   );

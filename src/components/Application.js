@@ -13,8 +13,7 @@ export default function Application(props) {
     days: [],
     day: "Monday",
     appointments: {},
-    interviewers: {},
-    interview: {}
+    interviewers: {}
   })
 
   const setDay = day => setState(prev => ({...prev, day }));
@@ -44,12 +43,19 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
-    })
+
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview: interview })
+      .then(() => {
+        setState(prev => ({...prev,
+          appointments
+        }))
+      })
+      .catch((err) => {
+        console.log(err);
+      }) 
   }
   
+
   const appointments = getAppointmentsForDay(state, state.day);
   
   const schedule = appointments.map((appointment) => {
