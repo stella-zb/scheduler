@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, setState } from "react";
 import "components/Appointment/styles.scss";
+import axios from "axios";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -28,6 +29,17 @@ export default function Appointment(props) {
     
     props.bookInterview(props.id, interview) 
     transition(SHOW)
+
+    axios.put(`http://localhost:8001/api/appointments/${props.id}`, { interview })
+      .then((res) => {
+        setState(prev => ({...prev,
+          interview: res
+        }));
+        transition(SHOW)
+      })
+      .catch((err) => {
+        console.log(err);
+      }) 
   }
 
   return (
