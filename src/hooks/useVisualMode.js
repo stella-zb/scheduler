@@ -10,7 +10,7 @@ export default function useVisualMode(initial) {
     // if replace is false which mean true
     // update the history with the given mode
     if (replace === false)
-    setHistory(history.concat(newMode))
+    setHistory(prev => ([...prev, newMode]))
   }
 
   const back = () => {
