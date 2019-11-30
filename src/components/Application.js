@@ -49,10 +49,7 @@ export default function Application(props) {
         setState(prev => ({...prev,
           appointments
         }))
-      })
-      .catch((err) => {
-        console.log(err);
-      }) 
+      });
   }
   
   const cancelInterview = (id) => {
@@ -70,9 +67,7 @@ export default function Application(props) {
       setState(prev => ({...prev,
         appointments
       }))
-    }).catch((err) => {
-      console.log(err);
-    }) 
+    });
   }
 
   const appointments = getAppointmentsForDay(state, state.day);
