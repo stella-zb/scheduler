@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByLabelText, getByPlaceholderText, getByDisplayValue, getByAltText, getByTitle, getByRole } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -22,8 +22,12 @@ describe("Application", () => {
     const { container } = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
+    // console.log(prettyDOM(container));
 
-    console.log(prettyDOM(container));
+    const appointments = getAllByTestId(container, "appointment")[0];
+    console.log(prettyDOM(appointments))
+    // fireEvent.click(getByText("Add"))
+
   });
 
 })
