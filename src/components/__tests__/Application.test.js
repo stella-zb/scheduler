@@ -19,7 +19,7 @@ describe("Application", () => {
   });
 
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const { container } = render(<Application />);
+    const { container, debug } = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
     // console.log(prettyDOM(container));
@@ -33,7 +33,11 @@ describe("Application", () => {
     })
     fireEvent.click(getByAltText(firstEmptyAppointmentSpot, "Sylvia Palmer"))
     fireEvent.click(getByText(firstEmptyAppointmentSpot, "Save"))
-    //console.log(prettyDOM(firstEmptyAppointmentSpot))
+    
+    debug(firstEmptyAppointmentSpot)
+    
+    expect(getByText(firstEmptyAppointmentSpot, "Saving")).toBeInTheDocument();
+    
   });
 
 })
