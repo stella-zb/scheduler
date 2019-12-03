@@ -24,9 +24,11 @@ describe("Application", () => {
     await waitForElement(() => getByText(container, "Archie Cohen"));
     // console.log(prettyDOM(container));
 
-    const appointments = getAllByTestId(container, "appointment")[0];
-    console.log(prettyDOM(appointments))
-    // fireEvent.click(getByText("Add"))
+    const appointments = getAllByTestId(container, "appointment");
+    const firstEmptyAppointmentSpot = appointments[0];
+    // console.log(prettyDOM(firstEmptyAppointmentSpot))
+
+    fireEvent.click(getByAltText(firstEmptyAppointmentSpot, "Add"))
 
   });
 
