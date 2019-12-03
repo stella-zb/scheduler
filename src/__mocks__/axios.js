@@ -94,5 +94,10 @@ export default {
         //data: fixtures.appointments
       })
     }
+
+    return Promise.reject({
+      status: 404,
+      statusText: "404 Error"
+    })
   })
 }
