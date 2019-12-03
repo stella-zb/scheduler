@@ -29,7 +29,10 @@ describe("Application", () => {
     // console.log(prettyDOM(firstEmptyAppointmentSpot))
 
     fireEvent.click(getByAltText(firstEmptyAppointmentSpot, "Add"))
-
+    fireEvent.change(getByPlaceholderText(firstEmptyAppointmentSpot, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    })
+    
   });
 
 })
