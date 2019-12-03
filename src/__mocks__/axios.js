@@ -84,5 +84,15 @@ export default {
       status: 404,
       statusText: "404 Error"
     })
+  }),
+
+  put: jest.fn(url => {
+    if (url === "/api/appointments/1") {
+      return Promise.resolve({
+        status: 204,
+        statusText: "No Content",
+        //data: fixtures.appointments
+      })
+    }
   })
 }
