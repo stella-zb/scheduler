@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByLabelText, getByPlaceholderText, getByDisplayValue, getByAltText, getByTitle, getByRole } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByLabelText, getByPlaceholderText, getByDisplayValue, getByAltText, getByTitle, getByRole, waitForElementToBeRemoved } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -35,9 +35,12 @@ describe("Application", () => {
     fireEvent.click(getByText(firstEmptyAppointmentSpot, "Save"))
     
     debug(firstEmptyAppointmentSpot)
-    
+
     expect(getByText(firstEmptyAppointmentSpot, "Saving")).toBeInTheDocument();
     
+    await waitForElementToBeRemoved(() => getByText(firstEmptyAppointmentSpot, "Saving"))
+
+    expect(getByText(firstEmptyAppointmentSpot, "Lydia Miller-Jones")).toBeInTheDocument();
   });
 
 })
