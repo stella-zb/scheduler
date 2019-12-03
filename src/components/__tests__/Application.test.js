@@ -26,14 +26,14 @@ describe("Application", () => {
 
     const appointments = getAllByTestId(container, "appointment");
     const firstEmptyAppointmentSpot = appointments[0];
-    // console.log(prettyDOM(firstEmptyAppointmentSpot))
-
+    
     fireEvent.click(getByAltText(firstEmptyAppointmentSpot, "Add"))
     fireEvent.change(getByPlaceholderText(firstEmptyAppointmentSpot, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
     })
     fireEvent.click(getByAltText(firstEmptyAppointmentSpot, "Sylvia Palmer"))
-
+    fireEvent.click(getByText(firstEmptyAppointmentSpot, "Save"))
+    //console.log(prettyDOM(firstEmptyAppointmentSpot))
   });
 
 })
