@@ -63,9 +63,9 @@ export default function useApplicationData(initial) {
 
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8001/api/days"),
-      axios.get("http://localhost:8001/api/appointments"),
-      axios.get("http://localhost:8001/api/interviewers")
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers")
     ]).then((all) => {
       dispatch({
         type: SET_APPLICATION_DATA,
@@ -79,16 +79,16 @@ export default function useApplicationData(initial) {
   }, []);
 
   const bookInterview = (id, interview) => {
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview: interview })
+    return axios.put(`/api/appointments/${id}`, { interview: interview })
       .then(() => dispatch({ type: SET_INTERVIEW, id, interview }))
-      .then(() => axios.get("http://localhost:8001/api/days"))
+      .then(() => axios.get("/api/days"))
       .then(res => dispatch({ type: SET_SPOTS, value: [res, id] }));  
   }
 
   const cancelInterview = (id) => {
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    return axios.delete(`/api/appointments/${id}`)
     .then(() => dispatch({ type: SET_INTERVIEW, id, interview: null }))
-    .then(() => axios.get("http://localhost:8001/api/days"))
+    .then(() => axios.get("/api/days"))
     .then(res => dispatch({ type: SET_SPOTS, value: [res, id] }));
   }
 
