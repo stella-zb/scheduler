@@ -4,6 +4,8 @@ import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAl
 
 import Application from "components/Application";
 
+import axios from "axios";
+
 afterEach(cleanup);
 
 describe("Application", () => {
@@ -92,4 +94,9 @@ describe("Application", () => {
     
   });
 
+  it("shows the save error when failing to save an appointment", () => {
+    axios.put.mockRejectedValueOnce();
+  });
+
+  
 })
