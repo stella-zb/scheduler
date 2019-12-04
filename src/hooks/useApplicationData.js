@@ -27,22 +27,40 @@ function reducer(state, action) {
           ...state.appointments,
           [action.id]: {
             ...state.appointments[action.id],
-            interview: { ...action.interview }
+            interview: action.interview ? { ...action.interview } : null
           }
         }
       }
     case SET_SPOTS:
-      const updateSpots = (daysArray, appointmentID) => {
-        return daysArray.map((day, index) => {
-          if (day.appointments.includes(appointmentID)) {
-            return {...day, spots: daysArray[index].spots }
+      const findDayForAppointment = (id, state) => {
+        for (let index in state.days) {
+          if (state.days[index].appointments.includes(id)) {
+            return Number(index)
           }
-          return day
-        })
+        }
       }
+      const dayIndex = findDayForAppointment(action.id, state);
+
+      let newSpots = 0
+      const appointmentIds = state.days[dayIndex].appointments;
+      for (let i = 0; i < appointmentIds.length; i++) {
+        if (state.appointments[appointmentIds[i]].interview === null) {
+          newSpots += 1 
+        }
+      }
+
       return {
         ...state,
-        days: updateSpots(action.value[0].data, action.value[1])
+        days: state.days.map((day, index) => {
+          if (index === dayIndex) {
+            return{
+              ...day,
+              spots: newSpots
+            }
+          } else {
+            return day
+          }
+        })
       }
     default:
       throw new Error(
@@ -81,15 +99,13 @@ export default function useApplicationData(initial) {
   const bookInterview = (id, interview) => {
     return axios.put(`/api/appointments/${id}`, { interview: interview })
       .then(() => dispatch({ type: SET_INTERVIEW, id, interview }))
-      .then(() => axios.get("/api/days"))
-      .then(res => dispatch({ type: SET_SPOTS, value: [res, id] }));  
+      .then(() => dispatch({ type: SET_SPOTS, id }));  
   }
 
   const cancelInterview = (id) => {
     return axios.delete(`/api/appointments/${id}`)
     .then(() => dispatch({ type: SET_INTERVIEW, id, interview: null }))
-    .then(() => axios.get("/api/days"))
-    .then(res => dispatch({ type: SET_SPOTS, value: [res, id] }));
+    .then(() => dispatch({ type: SET_SPOTS, id }));
   }
 
   return {
