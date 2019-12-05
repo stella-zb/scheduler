@@ -3,6 +3,8 @@ import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, 
 import Application from "components/Application";
 import axios from "axios";
 
+import axios from "axios";
+
 afterEach(cleanup);
 
 describe("Application", () => {
