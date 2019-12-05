@@ -40,6 +40,6 @@ npm run storybook
 
 ```
 ## Final Product
-!["Landing Page]()
-!["Adding Interview]()
-!["Show booking info with empty spots update]()
+![Landing Page](https://github.com/stella-zb/scheduler/blob/master/docs/Landing%20Page.png)
+![Adding Interview](https://github.com/stella-zb/scheduler/blob/master/docs/Adding%20Interview.png)
+![Show booking info with empty spots update](https://github.com/stella-zb/scheduler/blob/master/docs/Update%20Booking.png)
