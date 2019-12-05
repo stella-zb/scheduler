@@ -29,15 +29,16 @@ export default function reducer(state, action) {
         }
       }
     case SET_SPOTS:
-      const findDayForAppointment = (id, state) => {
+      const findDayBaseOnAppointmentID = (id, state) => {
         for (let index in state.days) {
           if (state.days[index].appointments.includes(id)) {
             return Number(index)
           }
         }
       }
-      const dayIndex = findDayForAppointment(action.id, state);
-
+      const dayIndex = findDayBaseOnAppointmentID(action.id, state);
+      
+      // count number of null from the appointments for the day
       let newSpots = 0
       const appointmentIds = state.days[dayIndex].appointments;
       for (let i = 0; i < appointmentIds.length; i++) {

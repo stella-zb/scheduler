@@ -45,8 +45,7 @@ export default function Form(props) {
 
         <InterviewerList
           interviewers={props.interviewers}
-          interviewer={interviewer} 
-          // interviewer="abc" test props.type in console
+          interviewer={interviewer}
           setInterviewer={setInterviewer}
         />
       </section>

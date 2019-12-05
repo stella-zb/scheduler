@@ -1,3 +1,4 @@
+// static database for testing
 const fixtures = {
   days: [
     {
@@ -54,7 +55,10 @@ const fixtures = {
 };
 
 export default {
+  // default proxy http://localhost:8001 
   defaults: { baseURL: "" },
+
+  // fake api get request 
   get: jest.fn(url => {
     if (url === "/api/days") {
       return Promise.resolve({
@@ -86,12 +90,12 @@ export default {
     })
   }),
 
+  // fake api put request 
   put: jest.fn(url => {
     if (url === "/api/appointments/1") {
       return Promise.resolve({
         status: 204,
-        statusText: "No Content",
-        //data: fixtures.appointments
+        statusText: "No Content"
       })
     }
 
@@ -109,6 +113,7 @@ export default {
     })
   }),
 
+  // fake api delete request 
   delete: jest.fn(url => {
     if (url === "/api/appointments/2") {
       return Promise.resolve({

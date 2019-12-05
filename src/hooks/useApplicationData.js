@@ -12,6 +12,7 @@ export default function useApplicationData(initial) {
 
   const setDay = day => dispatch({ type: SET_DAY, day: day });
 
+  // api request to load the datas and display on the page
   useEffect(() => {
     Promise.all([
       axios.get("/api/days"),
@@ -29,12 +30,14 @@ export default function useApplicationData(initial) {
     })
   }, []);
 
+  // api request to add new interview
   const bookInterview = (id, interview) => {
     return axios.put(`/api/appointments/${id}`, { interview: interview })
       .then(() => dispatch({ type: SET_INTERVIEW, id, interview }))
       .then(() => dispatch({ type: SET_SPOTS, id }));  
   }
 
+  // api request to delete booked interview
   const cancelInterview = (id) => {
     return axios.delete(`/api/appointments/${id}`)
     .then(() => dispatch({ type: SET_INTERVIEW, id, interview: null }))
