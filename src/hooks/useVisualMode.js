@@ -7,10 +7,10 @@ export default function useVisualMode(initial) {
   const transition = (newMode, replace = false) => {
     // update the mode with the given mode
     setMode(newMode)  
-    // if replace is false which mean true
-    // update the history with the given mode
-    if (replace === false)
-    setHistory(prev => ([...prev, newMode]))
+    // if replace is false which mean true, update the history with the given mode
+    if (replace === false) {
+      setHistory(prev => ([...prev, newMode]))
+    }
   }
 
   const back = () => {
@@ -20,8 +20,6 @@ export default function useVisualMode(initial) {
     if (history.length < 1) return
     // update Mode with the last element in history array
     setMode(history[history.length - 1])
-    // set newHistory after previous action ?
-    // setHistory(history) ?
   }
 
   return {

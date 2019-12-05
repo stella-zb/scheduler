@@ -1,9 +1,6 @@
-import React, { Fragment, setState } from "react";
+import React, { Fragment } from "react";
 import "components/Appointment/styles.scss";
-import axios from "axios";
-
 import useVisualMode from "hooks/useVisualMode";
-
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
