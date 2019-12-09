@@ -34,7 +34,7 @@ export default function Appointment(props) {
     props
       .bookInterview(props.id, interview) 
       .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE, true));
+      .catch(() => transition(ERROR_SAVE, true));
   }
 
   const onDelete = () => {   
@@ -42,7 +42,7 @@ export default function Appointment(props) {
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE, true));
+      .catch(() => transition(ERROR_DELETE, true));
   }
 
   return (
@@ -57,7 +57,7 @@ export default function Appointment(props) {
         {mode === SHOW && (
           <Show
             student={props.interview.student}
-            interviewer={props.interview.interviewer.name}
+            interviewer={props.interview.interviewer}
             onEdit={ () => transition(EDIT) }
             onDelete={ () => transition(CONFIRM) }
           />

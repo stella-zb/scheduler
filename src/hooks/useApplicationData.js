@@ -2,7 +2,7 @@ import { useReducer, useEffect } from "react";
 import axios from "axios";
 import reducer, { SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW, SET_SPOTS } from "reducers/application";
 
-export default function useApplicationData(initial) {
+export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
     days: [],
     day: "Monday",
