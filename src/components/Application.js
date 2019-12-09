@@ -5,23 +5,23 @@ import Appointment from "components/Appointment/index";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
-export default function Application(props) {
-  
+export default function Application() {
+
   const {
     state,
     setDay,
     bookInterview,
     cancelInterview
   } = useApplicationData();
-  
+
   const interviewers = getInterviewersForDay(state, state.day);
-  
+
   const appointments = getAppointmentsForDay(state, state.day).map((appointment) => {
     return (
       <Appointment
         key={appointment.id}
         {...appointment}
-        time={appointment.time} 
+        time={appointment.time}
         interview={getInterview(state, appointment.interview)}
         interviewers={interviewers}
         bookInterview={bookInterview}
@@ -54,7 +54,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {appointments}
-        <Appointment id="last" time="1am" /> 
+        <Appointment id="last" time="1am" />
       </section>
     </main>
   );
